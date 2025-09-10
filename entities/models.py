@@ -18,6 +18,17 @@ class Project:
         self.__tasks: List["Task"] = []
         self.__created_at: datetime = datetime.now()
 
+    def get_id(self) -> uuid.UUID:
+        return self.__id
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_description(self) -> str:
+        return self.__description
+
+    def get_created_at(self) -> datetime:
+        return self.__created_at
 
 class TaskStatus:
     OPEN = "OPEN"
@@ -41,3 +52,31 @@ class Task:
         self.__created_at: datetime = datetime.now()
         self.__deadline: datetime = deadline
         self.__description: str = description
+
+    
+    def get_id(self) -> uuid.UUID:
+        return self.__id
+
+    def get_project_id(self) -> uuid.UUID:
+        return self.__project_id
+
+    def get_title(self) -> str:
+        return self.__title
+
+    def get_status(self) -> str:
+        return self.__status
+
+    def get_created_at(self) -> datetime:
+        return self.__created_at
+
+    def get_deadline(self) -> datetime:
+        return self.__deadline
+
+    def get_description(self) -> str:
+        return self.__description
+
+    def set_status(self, status: str) -> None:
+        """Set the status of the task."""
+        if status not in [TaskStatus.OPEN, TaskStatus.IN_PROGRESS, TaskStatus.CLOSED]:
+            raise ValueError(f"Invalid status. Valid statuses are: {TaskStatus.OPEN}, {TaskStatus.IN_PROGRESS}, {TaskStatus.CLOSED}")
+        self.__status = status

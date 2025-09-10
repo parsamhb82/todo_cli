@@ -42,7 +42,7 @@ class Repository:
     def get_project(self, project_id: uuid.UUID) -> Project:
         """Retrieve a project by its ID."""
         for project in self.projects:
-            if project.__id == project_id:
+            if project.get_id() == project_id:
                 return project
         return None
 
@@ -55,7 +55,7 @@ class Repository:
         project = self.get_project(project_id)
         if project:
             self.projects.remove(project)
-            self.tasks = [task for task in self.tasks if task.__project_id != project_id]
+            self.tasks = [task for task in self.tasks if task.get_project_id() != project_id]
             self.save_to_disk()
             return True
         return False
@@ -69,19 +69,19 @@ class Repository:
     def get_task(self, task_id: uuid.UUID) -> Task:
         """Retrieve a task by its ID."""
         for task in self.tasks:
-            if task.__id == task_id:
+            if task.get_id() == task_id:
                 return task
         return None
 
     def get_tasks_for_project(self, project_id: uuid.UUID) -> List[Task]:
         """Retrieve all tasks for a given project."""
-        return [task for task in self.tasks if task.__project_id == project_id]
+        return [task for task in self.tasks if task.get_project_id() == project_id]
 
     def update_task_status(self, task_id: uuid.UUID, status: str) -> bool:
         """Update the status of a task."""
         task = self.get_task(task_id)
         if task:
-            task.__status = status
+            task.set_status(status)
             self.save_to_disk()
             return True
         return False
