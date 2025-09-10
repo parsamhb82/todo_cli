@@ -54,6 +54,8 @@ def update_task_status(task_id: str, status: str):
     """Update the status of a task."""
     try:
         task_id_uuid = uuid.UUID(task_id)
+        status = status.upper()
+
         if status not in [TaskStatus.OPEN, TaskStatus.IN_PROGRESS, TaskStatus.CLOSED]:
             print(f"Invalid status. Valid statuses are: {TaskStatus.OPEN}, {TaskStatus.IN_PROGRESS}, {TaskStatus.CLOSED}")
             return

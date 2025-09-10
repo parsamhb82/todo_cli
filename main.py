@@ -9,7 +9,7 @@ Available commands:
 2. list_projects
 3. add_task project_id "Task Title" "YYYY-MM-DD" --description "Task Description"
 4. list_tasks project_id
-5. update_task_status task_id "status" (status: OPEN, IN_PROGRESS, CLOSED)
+5. update_task_status task_id <status> (status: OPEN, IN_PROGRESS, CLOSED)
 6. delete_project project_id
 7. delete_task task_id
 8. exit
