@@ -20,7 +20,7 @@ def list_projects():
     projects = repo.get_all_projects()
     if projects:
         for project in projects:
-            print(f"Project ID: {project.__id}, Name: {project.__name}, Description: {project.__description}")
+            print(f"Project ID: {project.get_id()}, Name: {project.get_name()}, Description: {project.get_description()}")
     else:
         print("No projects found.")
 
@@ -44,7 +44,7 @@ def list_tasks(project_id: str):
         tasks = repo.get_tasks_for_project(project_id_uuid)
         if tasks:
             for task in tasks:
-                print(f"Task ID: {task.__id}, Title: {task.__title}, Status: {task.__status}, Deadline: {task.__deadline}")
+                print(f"Task ID: {task.get_id()}, Title: {task.get_title()}, Status: {task.get_status()}, Deadline: {task.get_deadline()}")
         else:
             print(f"No tasks found for project ID: {project_id}")
     except ValueError as e:
